@@ -1,3 +1,4 @@
+// Main JPA entity representing a telemetry packet from a satellite.
 package com.angi.satellite_telemetry_api.model;
 
 import jakarta.persistence.*;

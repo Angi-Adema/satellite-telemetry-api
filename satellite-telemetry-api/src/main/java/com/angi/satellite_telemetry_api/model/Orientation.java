@@ -1,3 +1,4 @@
+// Sub-class representing the orientation (attitude) of the satellite.
 package com.angi.satellite_telemetry_api.model;
 
 import jakarta.persistence.Embeddable;
