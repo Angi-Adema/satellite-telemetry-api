@@ -18,13 +18,18 @@ public class TelemetryService {
     private final TelemetryPacketRepository telemetryPacketRepository;
 
     // Ingest and store a batch of telemetry packets.
-    //@param packets list of telemetry packets from the request
-    //@return number of packets successfully stored
+    /**
+     * Ingest and store a batch of telemetry packets.
+     *
+     * @param packets list of telemetry packets from the request
+     * @return number of packets successfully stored
+     */
 
     public int ingestTelemetry(List<TelemetryPacket> packets) {
         List<TelemetryPacket> savedPackets = telemetryPacketRepository.saveAll(packets);
         return savedPackets.size();
-    }
+
+
 
     //  /**
     //  * Get a summary of all satellites that have sent telemetry.
@@ -133,4 +138,5 @@ public class TelemetryService {
     //     return anomalies;
     // }
 
+    }
 }
