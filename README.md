@@ -139,6 +139,10 @@ DTO representing detected issues such as:
   "status": "NOMINAL"
 }
 ```
+**Notes**
+- `timestamp` is UTC (`Instant`)
+- `status` is an enum: `NOMINAL`, `WARNING`, `CRITICAL`
+- `orientation` is embedded as a component in the entity
 
 ---
 
