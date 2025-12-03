@@ -4,7 +4,11 @@ import com.angi.satellite_telemetry_api.model.TelemetryPacket;
 import com.angi.satellite_telemetry_api.repository.TelemetryPacketRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -17,56 +21,51 @@ public class TelemetryService {
         this.telemetryPacketRepository = telemetryPacketRepository;
     }
 
-    /**
-     * Ingest and store a batch of telemetry packets.
-     *
-     * @param packets list of telemetry packets from the request
-     * @return number of packets successfully stored
-     */
+    
+    // Ingest and store a batch of telemetry packets.
+    // @param packets list of telemetry packets from the request
+    // @return number of packets successfully stored
 
     public int ingestTelemetry(List<TelemetryPacket> packets) {
         List<TelemetryPacket> savedPackets = telemetryPacketRepository.saveAll(packets);
         return savedPackets.size();
+    }
 
+    // Get a summary of all satellites that have sent telemetry.
+    // Returns one entry per satellite with lastContact + lastStatus.
 
+    public List<SatelliteSummary> listSatellites() {
+        List<TelemetryPacket> allPackets = telemetryPacketRepository.findAll();
 
-    //  /**
-    //  * Get a summary of all satellites that have sent telemetry.
-    //  *
-    //  * Returns one entry per satellite with lastContact + lastStatus.
-    //  */
-    // public List<SatelliteSummary> listSatellites() {
-    //     List<TelemetryPacket> allPackets = telemetryPacketRepository.findAll();
+        // Group by satelliteId
+        Map<String, List<TelemetryPacket>> bySatellite =
+                allPackets.stream()
+                          .collect(Collectors.groupingBy(TelemetryPacket::getSatelliteId));
 
-    //     // Group by satelliteId
-    //     Map<String, List<TelemetryPacket>> bySatellite =
-    //             allPackets.stream()
-    //                       .collect(Collectors.groupingBy(TelemetryPacket::getSatelliteId));
+        List<SatelliteSummary> summaries = new ArrayList<>();
 
-    //     List<SatelliteSummary> summaries = new ArrayList<>();
+        for (Map.Entry<String, List<TelemetryPacket>> entry : bySatellite.entrySet()) {
+            String satelliteId = entry.getKey();
+            List<TelemetryPacket> packets = entry.getValue();
 
-    //     for (Map.Entry<String, List<TelemetryPacket>> entry : bySatellite.entrySet()) {
-    //         String satelliteId = entry.getKey();
-    //         List<TelemetryPacket> packets = entry.getValue();
+            // Latest packet by timestamp
+            TelemetryPacket latest = packets.stream()
+                    .max(Comparator.comparing(TelemetryPacket::getTimestamp))
+                    .orElse(null);
 
-    //         // Latest packet by timestamp
-    //         TelemetryPacket latest = packets.stream()
-    //                 .max(Comparator.comparing(TelemetryPacket::getTimestamp))
-    //                 .orElse(null);
-
-    //         if (latest != null) {
-    //             summaries.add(new SatelliteSummary(
-    //                     satelliteId,
-    //                     latest.getTimestamp(),
-    //                     latest.getStatus()
-    //             ));
-    //         }
-    //     }
-
-    //     // Optional: sort by satelliteId or lastContact descending
-    //     summaries.sort(Comparator.comparing(SatelliteSummary::getSatelliteId));
-    //     return summaries;
-    // }
+            if (latest != null) {
+                summaries.add(new SatelliteSummary(
+                        satelliteId,
+                        latest.getTimestamp(),
+                        latest.getStatus()
+                ));
+            }
+        }
+        
+    // Sort by satelliteId or lastContact descending
+        summaries.sort(Comparator.comparing(SatelliteSummary::getSatelliteId));
+        return summaries;
+    }
 
     // /**
     //  * Get the latest telemetry packet for a given satellite, if any.
@@ -137,5 +136,5 @@ public class TelemetryService {
     //     return anomalies;
     // }
 
-    }
+    
 }
