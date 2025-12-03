@@ -1,54 +1,47 @@
-# Satellite Telemetry API
+# 🛰️ Satellite Telemetry API
 
-🚀 New Project Launch: Satellite Telemetry API 🛰️
-
-I’ve just completed a mission-styled backend system designed to simulate how real ground stations ingest, store, monitor, and analyze satellite telemetry.
-
-Why did I build this?
-
-Because I want my engineering work to contribute to national security, space exploration, and mission assurance — and this project is a step toward that goal.
-
-🌐 Tech Highlights:
-• Java 21 + Spring Boot  
-• RESTful API design  
-• JPA + H2 relational modeling  
-• Real-time telemetry ingestion  
-• Latest-status tracking for each satellite  
-• Time-window history queries  
-• Automated anomaly detection (battery, thermal, critical status)  
-• Built with aerospace operations in mind
-
-This project showcases my ability to design backend systems that resemble real-world ground software used in the space and defense industry.
-
-GitHub Repo: 🔗 https://github.com/Angi-Adema/satellite-telemetry-api
-
-I’m actively applying for roles in Space & Defense — including Lockheed Martin Space — and I’m excited to continue building projects that align with mission-critical software engineering.
-
-If you’re working in the industry, I’d love to connect! 🚀
-
-
-A Spring Boot–based **satellite telemetry ground system** that simulates how mission operators ingest, store, query, and analyze spacecraft health data.
-
-Built as a portfolio project to demonstrate backend and data modeling skills for **space and defense systems** (e.g., Lockheed Martin Space).
+A mission-inspired backend system that simulates a simplified **satellite ground segment**, built with **Java 21**, **Spring Boot**, and **JPA**.  
+Designed as a portfolio project demonstrating readiness for **space, defense, and mission assurance software engineering roles**.
 
 ---
 
-## 🛰 Project Overview
+## 🛰️ About This Project
 
-This service models a simplified **satellite ground segment**:
+Satellite Telemetry API models how a real ground system receives, stores, and analyzes spacecraft telemetry.  
+It demonstrates my ability to design **high-reliability backend services** with clean architecture, data modeling, and mission-style workflows.
 
-- Accepts **telemetry packets** from multiple satellites  
-- Stores them in a **relational database** (H2 + JPA)  
+This project highlights my strengths in:
+
+- Backend engineering with modern **Java & Spring Boot**
+- Data modeling using **JPA + relational databases**
+- Designing structured, maintainable **REST APIs**
+- Thinking like a mission systems engineer (health checks, anomaly detection, status tracking)
+- Understanding space operations concepts: telemetry, attitude, battery thermals, spacecraft state-of-health
+- Building systems aligned with **mission assurance**, **operational safety**, and **ground software engineering**
+
+This repository serves as a portfolio demonstration of my readiness to contribute to:
+
+💠 **Lockheed Martin Space**  
+💠 **Raytheon**  
+💠 **Sierra Space**  
+💠 **Ball Aerospace**  
+💠 **Other space & defense mission software teams**
+
+---
+
+## 🧭 Project Overview
+
+This service models a simplified **satellite telemetry ground system**:
+
+- Ingests **telemetry packets** from multiple spacecraft
+- Stores them using **Spring Data JPA** and an **H2 in-memory database**
 - Exposes REST endpoints to:
-  - Upload telemetry in batches  
+  - Upload telemetry batches  
   - List all satellites and their latest status  
-  - Query telemetry history in a time window  
-  - Detect **anomalies**:
-    - Low battery  
-    - High temperature  
-    - Critical state  
+  - Query historical telemetry by time window  
+  - Detect anomalies (battery, temperature, critical state)
 
-The goal is to demonstrate **Java, Spring Boot, REST APIs, JPA**, and mission-style telemetry monitoring.
+This project demonstrates comfort with **real-time data workflows**, **mission operations concepts**, and **backend engineering for high-integrity systems**.
 
 ---
 
@@ -397,6 +390,32 @@ Expected:
 ```
 
 ---
+
+## 🛰 Lockheed / Space Systems Pitch
+
+This project mirrors several core concepts used in real mission operations:
+
+- Consuming spacecraft telemetry
+- Deriving real-time health status
+- Monitoring battery and thermal constraints
+- Detecting off-nominal behavior
+- Supporting operator dashboards and mission consoles
+
+It demonstrates:
+
+- Clean Java/Spring backend design
+- Solid JPA-based data modeling
+- Understanding of space operations workflows
+- Ability to build maintainable, mission-relevant backend systems
+
+This architecture aligns well with engineering work performed on:
+
+- Ground systems  
+- Autonomy frameworks  
+- Mission software  
+- Flight/ground integration  
+- Spacecraft health and status pipelines  
+
 
 ## 🔭 Future Enhancements
 
