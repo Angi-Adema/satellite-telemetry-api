@@ -1,21 +1,21 @@
 package com.angi.satellite_telemetry_api.service;
 
-import com.angi.satellite_telemetry_api.model.Anomaly;
 import com.angi.satellite_telemetry_api.model.TelemetryPacket;
-import com.angi.satellite_telemetry_api.model.TelemetryStatus;
 import com.angi.satellite_telemetry_api.repository.TelemetryPacketRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
+
 
 @Service
-//@RequiredArgsConstructor
 public class TelemetryService {
     
     private final TelemetryPacketRepository telemetryPacketRepository;
+
+    // Spring will use this constructor to inject the repository. Errors with Lombok and @RequiredArgsConstructor
+    public TelemetryService(TelemetryPacketRepository telemetryPacketRepository) {
+        this.telemetryPacketRepository = telemetryPacketRepository;
+    }
 
     /**
      * Ingest and store a batch of telemetry packets.

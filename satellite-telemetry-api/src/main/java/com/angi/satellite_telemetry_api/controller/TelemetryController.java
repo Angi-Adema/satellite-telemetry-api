@@ -1,24 +1,23 @@
 package com.angi.satellite_telemetry_api.controller;
 
-import com.angi.satellite_telemetry_api.model.Anomaly;
 import com.angi.satellite_telemetry_api.model.TelemetryPacket;
 import com.angi.satellite_telemetry_api.service.TelemetryService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
 public class TelemetryController {
     
     private final TelemetryService telemetryService;
+
+    public TelemetryController(TelemetryService telemetryService) {
+        this.telemetryService = telemetryService;
+    }
 
     // Health check to be sure the app is running.
     @GetMapping("/health")
@@ -42,15 +41,17 @@ public class TelemetryController {
     //  *   }
     //  * ]
     //  */
-    // @PostMapping("/telemetry/upload")
-    // public ResponseEntity<Map<String, Integer>> uploadTelemetry(
-    //         @RequestBody List<TelemetryPacket> packets
-    // ) {
-    //     int stored = telemetryService.ingestTelemetry(packets);
-    //     return ResponseEntity.ok(
-    //             Map.of("received", packets.size(), "stored", stored)
-    //     );
-    // }
+
+
+    @PostMapping("/telemetry/upload")
+    public ResponseEntity<Map<String, Integer>> uploadTelemetry(
+            @RequestBody List<TelemetryPacket> packets
+    ) {
+        int stored = telemetryService.ingestTelemetry(packets);
+        return ResponseEntity.ok(
+                Map.of("received", packets.size(), "stored", stored)
+        );
+    }
 
     // /**
     //  * List all satellites that have telemetry in the system,
