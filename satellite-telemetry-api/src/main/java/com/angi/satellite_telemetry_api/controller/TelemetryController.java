@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
@@ -80,14 +81,15 @@ public class TelemetryController {
     //  * Example:
     //  * GET /api/satellites/SAT-001/telemetry?from=2025-12-02T10:00:00Z&to=2025-12-02T11:00:00Z
     //  */
-    // @GetMapping("/satellites/{id}/telemetry")
-    // public List<TelemetryPacket> getTelemetryHistory(
-    //         @PathVariable("id") String satelliteId,
-    //         @RequestParam("from") Instant from,
-    //         @RequestParam("to") Instant to
-    // ) {
-    //     return telemetryService.getTelemetryHistory(satelliteId, from, to);
-    // }
+
+    @GetMapping("/satellites/{id}/telemetry")
+    public List<TelemetryPacket> getTelemetryHistory(
+            @PathVariable("id") String satelliteId,
+            @RequestParam("from") Instant from,
+            @RequestParam("to") Instant to
+    ) {
+        return telemetryService.getTelemetryHistory(satelliteId, from, to);
+    }
 
     // /**
     //  * Get anomalies detected in telemetry since a given timestamp.

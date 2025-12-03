@@ -4,6 +4,7 @@ import com.angi.satellite_telemetry_api.model.TelemetryPacket;
 import com.angi.satellite_telemetry_api.repository.TelemetryPacketRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -73,17 +74,16 @@ public class TelemetryService {
         List<TelemetryPacket> packets = telemetryPacketRepository.findBySatelliteId(satelliteId);
 
         return packets.stream()
-                .max(Comparator.comparing(TelemetryPacket::getTimestamp));
+                      .max(Comparator.comparing(TelemetryPacket::getTimestamp));
     }
 
-    // /**
-    //  * Get telemetry history for a satellite between two timestamps.
-    //  */
-    // public List<TelemetryPacket> getTelemetryHistory(String satelliteId, Instant from, Instant to) {
-    //     return telemetryPacketRepository.findBySatelliteIdAndTimestampBetween(
-    //             satelliteId, from, to
-    //     );
-    // }
+
+    // Get telemetry history for a satellite between two timestamps.
+    public List<TelemetryPacket> getTelemetryHistory(String satelliteId, Instant from, Instant to) {
+        return telemetryPacketRepository.findBySatelliteIdAndTimestampBetween(
+                satelliteId, from, to
+        );
+    }
 
     // /**
     //  * Scan recent telemetry and detect anomalies, e.g.
