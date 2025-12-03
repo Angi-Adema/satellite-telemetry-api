@@ -20,7 +20,7 @@ Because I want my engineering work to contribute to national security, space exp
 
 This project showcases my ability to design backend systems that resemble real-world ground software used in the space and defense industry.
 
-GitHub Repo: 🔗 *(add your repo link)*
+GitHub Repo: 🔗 https://github.com/Angi-Adema/satellite-telemetry-api
 
 I’m actively applying for roles in Space & Defense — including Lockheed Martin Space — and I’m excited to continue building projects that align with mission-critical software engineering.
 
