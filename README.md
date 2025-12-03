@@ -371,6 +371,16 @@ Expected:
 
 ---
 
+## 🔭 Future Enhancements
+
+- **Swagger / OpenAPI documentation**
+- **API key authentication**
+- **More anomaly types:**
+  - Orientation drift (roll/pitch/yaw threshold)
+  - Stale telemetry (no recent contact)
+  - Rapid battery drain detection
+- **JUnit / Mockito test suite**
+- **React dashboard for visualization**
 
 
 
