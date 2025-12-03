@@ -3,6 +3,8 @@ package com.angi.satellite_telemetry_api.controller;
 import com.angi.satellite_telemetry_api.model.TelemetryPacket;
 import com.angi.satellite_telemetry_api.service.SatelliteSummary;
 import com.angi.satellite_telemetry_api.service.TelemetryService;
+
+import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,17 +63,16 @@ public class TelemetryController {
         return telemetryService.listSatellites();
     }
 
-    // /**
-    //  * Get the latest telemetry packet for one satellite.
-    //  */
-    // @GetMapping("/satellites/{id}/status")
-    // public ResponseEntity<TelemetryPacket> getLatestStatus(
-    //         @PathVariable("id") String satelliteId
-    // ) {
-    //     Optional<TelemetryPacket> latest = telemetryService.getLatestStatus(satelliteId);
-    //     return latest.map(ResponseEntity::ok)
-    //                  .orElseGet(() -> ResponseEntity.notFound().build());
-    // }
+    // Get the latest telemetry packet for one satellite.
+
+    @GetMapping("/satellites/{id}/status")
+    public ResponseEntity<TelemetryPacket> getLatestStatus(
+            @PathVariable("id") String satelliteId
+    ) {
+        Optional<TelemetryPacket> latest = telemetryService.getLatestStatus(satelliteId);
+        return latest.map(ResponseEntity::ok)
+                     .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
     // /**
     //  * Get telemetry history for a satellite between two timestamps.

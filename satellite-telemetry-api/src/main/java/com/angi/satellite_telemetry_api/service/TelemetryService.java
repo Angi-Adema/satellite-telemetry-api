@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -67,15 +68,13 @@ public class TelemetryService {
         return summaries;
     }
 
-    // /**
-    //  * Get the latest telemetry packet for a given satellite, if any.
-    //  */
-    // public Optional<TelemetryPacket> getLatestStatus(String satelliteId) {
-    //     List<TelemetryPacket> packets = telemetryPacketRepository.findBySatelliteId(satelliteId);
+    // Get the latest telemetry packet for a given satellite, if any.
+    public Optional<TelemetryPacket> getLatestStatus(String satelliteId) {
+        List<TelemetryPacket> packets = telemetryPacketRepository.findBySatelliteId(satelliteId);
 
-    //     return packets.stream()
-    //             .max(Comparator.comparing(TelemetryPacket::getTimestamp));
-    // }
+        return packets.stream()
+                .max(Comparator.comparing(TelemetryPacket::getTimestamp));
+    }
 
     // /**
     //  * Get telemetry history for a satellite between two timestamps.
