@@ -11,6 +11,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Anomaly {
+    
     private String satelliteId;
 
     private Instant timestamp;

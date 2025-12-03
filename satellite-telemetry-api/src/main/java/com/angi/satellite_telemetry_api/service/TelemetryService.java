@@ -1,6 +1,8 @@
 package com.angi.satellite_telemetry_api.service;
 
+import com.angi.satellite_telemetry_api.model.Anomaly;
 import com.angi.satellite_telemetry_api.model.TelemetryPacket;
+import com.angi.satellite_telemetry_api.model.TelemetryStatus;
 import com.angi.satellite_telemetry_api.repository.TelemetryPacketRepository;
 import org.springframework.stereotype.Service;
 
@@ -91,49 +93,50 @@ public class TelemetryService {
     //  * - HIGH_TEMPERATURE if temperature > 40
     //  * - CRITICAL_STATE if status == CRITICAL
     //  */
-    // public List<Anomaly> getAnomalies(Instant since) {
-    //     List<TelemetryPacket> recentPackets =
-    //             telemetryPacketRepository.findByTimestampAfter(since);
 
-    //     List<Anomaly> anomalies = new ArrayList<>();
+    public List<Anomaly> getAnomalies(Instant since) {
+        List<TelemetryPacket> recentPackets =
+                telemetryPacketRepository.findByTimestampAfter(since);
 
-    //     for (TelemetryPacket packet : recentPackets) {
-    //         // Low battery
-    //         if (packet.getBatteryLevel() < 30.0) {
-    //             anomalies.add(new Anomaly(
-    //                     packet.getSatelliteId(),
-    //                     packet.getTimestamp(),
-    //                     "LOW_BATTERY",
-    //                     packet.getBatteryLevel(),
-    //                     null
-    //             ));
-    //         }
+        List<Anomaly> anomalies = new ArrayList<>();
 
-    //         // High temperature
-    //         if (packet.getTemperature() > 40.0) {
-    //             anomalies.add(new Anomaly(
-    //                     packet.getSatelliteId(),
-    //                     packet.getTimestamp(),
-    //                     "HIGH_TEMPERATURE",
-    //                     null,
-    //                     packet.getTemperature()
-    //             ));
-    //         }
+        for (TelemetryPacket packet : recentPackets) {
+            // Low battery
+            if (packet.getBatteryLevel() < 30.0) {
+                anomalies.add(new Anomaly(
+                        packet.getSatelliteId(),
+                        packet.getTimestamp(),
+                        "LOW_BATTERY",
+                        packet.getBatteryLevel(),
+                        null
+                ));
+            }
 
-    //         // Critical state
-    //         if (packet.getStatus() == TelemetryStatus.CRITICAL) {
-    //             anomalies.add(new Anomaly(
-    //                     packet.getSatelliteId(),
-    //                     packet.getTimestamp(),
-    //                     "CRITICAL_STATE",
-    //                     packet.getBatteryLevel(),
-    //                     packet.getTemperature()
-    //             ));
-    //         }
-    //     }
+            // High temperature
+            if (packet.getTemperature() > 40.0) {
+                anomalies.add(new Anomaly(
+                        packet.getSatelliteId(),
+                        packet.getTimestamp(),
+                        "HIGH_TEMPERATURE",
+                        null,
+                        packet.getTemperature()
+                ));
+            }
 
-    //     return anomalies;
-    // }
+            // Critical state
+            if (packet.getStatus() == TelemetryStatus.CRITICAL) {
+                anomalies.add(new Anomaly(
+                        packet.getSatelliteId(),
+                        packet.getTimestamp(),
+                        "CRITICAL_STATE",
+                        packet.getBatteryLevel(),
+                        packet.getTemperature()
+                ));
+            }
+        }
+
+        return anomalies;
+    }
 
     
 }

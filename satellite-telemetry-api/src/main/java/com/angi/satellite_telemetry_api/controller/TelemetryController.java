@@ -1,5 +1,6 @@
 package com.angi.satellite_telemetry_api.controller;
 
+import com.angi.satellite_telemetry_api.model.Anomaly;
 import com.angi.satellite_telemetry_api.model.TelemetryPacket;
 import com.angi.satellite_telemetry_api.service.SatelliteSummary;
 import com.angi.satellite_telemetry_api.service.TelemetryService;
@@ -98,11 +99,12 @@ public class TelemetryController {
     //  * Example:
     //  * GET /api/telemetry/anomalies?since=2025-12-02T09:00:00Z
     //  */
-    // @GetMapping("/telemetry/anomalies")
-    // public List<Anomaly> getAnomalies(
-    //         @RequestParam("since") Instant since
-    // ) {
-    //     return telemetryService.getAnomalies(since);
-    // }
+
+    @GetMapping("/telemetry/anomalies")
+    public List<Anomaly> getAnomalies(
+            @RequestParam("since") Instant since
+    ) {
+        return telemetryService.getAnomalies(since);
+    }
     
 }
