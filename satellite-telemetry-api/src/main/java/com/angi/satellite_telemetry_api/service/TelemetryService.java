@@ -12,12 +12,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class TelemetryService {
     
     private final TelemetryPacketRepository telemetryPacketRepository;
 
-    // Ingest and store a batch of telemetry packets.
     /**
      * Ingest and store a batch of telemetry packets.
      *
