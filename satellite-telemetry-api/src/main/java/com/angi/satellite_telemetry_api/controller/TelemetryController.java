@@ -1,6 +1,7 @@
 package com.angi.satellite_telemetry_api.controller;
 
 import com.angi.satellite_telemetry_api.model.TelemetryPacket;
+import com.angi.satellite_telemetry_api.service.SatelliteSummary;
 import com.angi.satellite_telemetry_api.service.TelemetryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,14 +54,12 @@ public class TelemetryController {
         );
     }
 
-    // /**
-    //  * List all satellites that have telemetry in the system,
-    //  * with their latest contact time and status.
-    //  */
-    // @GetMapping("/satellites")
-    // public List<SatelliteSummary> listSatellites() {
-    //     return telemetryService.listSatellites();
-    // }
+    // List all satellites that have telemetry in the system with their latest contact time and status.
+    
+    @GetMapping("/satellites")
+    public List<SatelliteSummary> listSatellites() {
+        return telemetryService.listSatellites();
+    }
 
     // /**
     //  * Get the latest telemetry packet for one satellite.
