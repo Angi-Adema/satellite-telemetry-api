@@ -1,5 +1,32 @@
 # Satellite Telemetry API
 
+🚀 New Project Launch: Satellite Telemetry API 🛰️
+
+I’ve just completed a mission-styled backend system designed to simulate how real ground stations ingest, store, monitor, and analyze satellite telemetry.
+
+Why did I build this?
+
+Because I want my engineering work to contribute to national security, space exploration, and mission assurance — and this project is a step toward that goal.
+
+🌐 Tech Highlights:
+• Java 21 + Spring Boot  
+• RESTful API design  
+• JPA + H2 relational modeling  
+• Real-time telemetry ingestion  
+• Latest-status tracking for each satellite  
+• Time-window history queries  
+• Automated anomaly detection (battery, thermal, critical status)  
+• Built with aerospace operations in mind
+
+This project showcases my ability to design backend systems that resemble real-world ground software used in the space and defense industry.
+
+GitHub Repo: 🔗 *(add your repo link)*
+
+I’m actively applying for roles in Space & Defense — including Lockheed Martin Space — and I’m excited to continue building projects that align with mission-critical software engineering.
+
+If you’re working in the industry, I’d love to connect! 🚀
+
+
 A Spring Boot–based **satellite telemetry ground system** that simulates how mission operators ingest, store, query, and analyze spacecraft health data.
 
 Built as a portfolio project to demonstrate backend and data modeling skills for **space and defense systems** (e.g., Lockheed Martin Space).
