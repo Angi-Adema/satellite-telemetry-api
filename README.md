@@ -19,7 +19,7 @@ This project highlights my strengths in:
 - Understanding space operations concepts: telemetry, attitude, battery thermals, spacecraft state-of-health
 - Building systems aligned with **mission assurance**, **operational safety**, and **ground software engineering**
 
-This repository serves as a portfolio demonstration of my readiness to contribute to:
+This repository serves as a portfolio demonstration of my readiness to contribute to aerospace defense networks, civil space agencies, and military command and control ground software teams:
 
 💠 **Lockheed Martin Space**  
 💠 **Raytheon**  
